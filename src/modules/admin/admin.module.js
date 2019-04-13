@@ -11,6 +11,7 @@
   angular
     .module("UsersApp.AdminModule")
     .config(["$routeProvider", AdminConfig.Config]);
+    
   // Directives
   angular
     .module("UsersApp.AdminModule")

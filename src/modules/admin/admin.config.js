@@ -5,7 +5,7 @@ module.exports.Config = function($routeProvider) {
     .when("/", {
       template: "<dashboard></dashboard>",
       page: {
-        title: "Login"
+        title: "Dashboard"
       }
     });
 };
