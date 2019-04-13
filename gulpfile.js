@@ -9,6 +9,7 @@
  * - Cache Busting
  * - Live Reload
  * - JS Hint
+ * - Autoprefixer
  */
 
 var gulp = require("gulp");
@@ -26,6 +27,7 @@ var gutil = require("gulp-util");
 var ngAnnotate = require("browserify-ngannotate");
 var CacheBuster = require("gulp-cachebust");
 const livereload = require("gulp-livereload");
+const autoprefix = require("gulp-autoprefixer");
 var cachebust = new CacheBuster();
 
 /**
@@ -70,13 +72,14 @@ gulp.task("clean-build-template-cache", function(cb) {
 
 gulp.task("build-css", function(cb) {
   return gulp
-    .src("./src/assets/scss/*")
+    .src("./src/assets/scss/**/*.scss")
     .pipe(sourcemaps.init())
     .pipe(
       sass({
         outputStyle: "compressed"
       })
     )
+    .pipe(autoprefix("last 2 versions"))
     .pipe(cachebust.resources())
     .pipe(sourcemaps.write("./maps"))
     .pipe(gulp.dest("./dist"))
@@ -195,7 +198,7 @@ gulp.task(
       ])
     );
     gulp.watch(
-      "./src/assets/scss/*",
+      "./src/assets/scss/**/*.scss",
       gulp.series(["clean-build-css", "build-css", "code-cache-bust"])
     );
     cb();

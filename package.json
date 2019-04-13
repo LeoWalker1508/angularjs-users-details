@@ -23,6 +23,7 @@
     "browserify": "^16.2.3",
     "browserify-ngannotate": "^2.0.0",
     "del": "^4.1.0",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-cachebust": "0.0.10",
     "gulp-concat": "^2.6.1",
