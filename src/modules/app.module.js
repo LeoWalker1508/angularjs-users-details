@@ -1,3 +1,4 @@
+require('./admin/admin.module');
 require('./user/user.module');
 require('./common/common.module');
 
@@ -7,10 +8,12 @@ require('./common/common.module');
 	angular.module('UsersApp', [
 		'ngRoute',
 		'UsersApp.Partials',
+		'UsersApp.AdminModule',
 		'UsersApp.UsersModule',
 		'UsersApp.CommonModule'
 	]);
 
+	// Components and Angular Imports
 	const App = require('./app/app');
 
 	// Directives
