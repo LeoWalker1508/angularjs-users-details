@@ -9,9 +9,25 @@
   "license": "ISC",
   "devDependencies": {
     "bower": "^1.7.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "gulp-jshint": "^2.0.0",
+    "gulp-livereload": "^4.0.1",
+    "gulp-webserver": "^0.9.1",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0"
+  },
+  "dependencies": {
+    "browserify": "^16.2.3",
+    "browserify-ngannotate": "^2.0.0",
+    "del": "^4.1.0",
+    "gulp-cachebust": "0.0.10",
+    "gulp-concat": "^2.6.1",
+    "gulp-ng-html2js": "^0.2.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   }
 }
