@@ -210,11 +210,11 @@ gulp.task(
  */
 
 gulp.task("webserver", function() {
-  gulp.src(".").pipe(
+  gulp.src("./dist/").pipe(
     webserver({
       livereload: true,
       directoryListing: true,
-      open: "http://localhost:8000/dist/index.html"
+      open: "http://localhost:8000/index.html"
     })
   );
 });
