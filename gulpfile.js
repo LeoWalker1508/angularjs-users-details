@@ -147,7 +147,7 @@ gulp.task("build-template-cache", function(cb) {
 
 gulp.task("code-cache-bust", function(cb) {
   gulp
-    .src("./src/modules/index.html")
+    .src("./src/index.html")
     .pipe(cachebust.references())
     .pipe(gulp.dest("dist"));
   cb();
