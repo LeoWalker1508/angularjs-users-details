@@ -16,6 +16,7 @@ var webserver = require("gulp-webserver");
 var del = require("del");
 var sass = require("gulp-sass");
 var jshint = require("gulp-jshint");
+var babel = require("gulp-babel");
 var sourcemaps = require("gulp-sourcemaps");
 var browserify = require("browserify");
 var source = require("vinyl-source-stream");
@@ -26,7 +27,6 @@ var ngAnnotate = require("browserify-ngannotate");
 var CacheBuster = require("gulp-cachebust");
 const livereload = require("gulp-livereload");
 var cachebust = new CacheBuster();
-
 
 /**
  * jshint task
@@ -40,7 +40,6 @@ gulp.task("jshint", function(cb) {
   cb();
 });
 
-
 /**
  * Deletes the dist folder
  */
@@ -49,25 +48,21 @@ gulp.task("clean", function(cb) {
   del(["dist"]).then(() => cb());
 });
 
-
 /**
  * Sub Cleaning Tasks
  */
 
 gulp.task("clean-build-js", function(cb) {
-del(["./dist/bundle.*"]).then(() => cb());
+  del(["./dist/bundle.*"]).then(() => cb());
 });
-
 
 gulp.task("clean-build-css", function(cb) {
   del(["./dist/style.*"]).then(() => cb());
 });
 
-
 gulp.task("clean-build-template-cache", function(cb) {
   del(["./dist/partials.*"]).then(() => cb());
 });
-
 
 /**
  * Builds SCSS files
@@ -88,7 +83,6 @@ gulp.task("build-css", function(cb) {
     .pipe(livereload());
 });
 
-
 /**
  * Build a minified Javascript bundle
  */
@@ -106,14 +100,22 @@ gulp.task("build-js", function(cb) {
     .pipe(source("bundle.js"))
     .pipe(buffer())
     .pipe(cachebust.resources())
-    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(
+      sourcemaps.init({
+        loadMaps: true
+      })
+    )
+    .pipe(
+      babel({
+        presets: ["@babel/env"]
+      })
+    )
     .pipe(uglify())
     .on("error", gutil.log)
     .pipe(sourcemaps.write("./maps"))
     .pipe(gulp.dest("./dist"))
     .pipe(livereload());
 });
-
 
 /**
  * Fills in the Angular template cache
@@ -133,13 +135,16 @@ gulp.task("build-template-cache", function(cb) {
     )
     .pipe(concat("partials.js"))
     .pipe(cachebust.resources())
-    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(
+      sourcemaps.init({
+        loadMaps: true
+      })
+    )
     .pipe(uglify())
     .pipe(sourcemaps.write("./maps"))
     .pipe(gulp.dest("./dist/"))
     .pipe(livereload());
 });
-
 
 /**
  * CacheBust References
@@ -152,7 +157,6 @@ gulp.task("code-cache-bust", function(cb) {
     .pipe(gulp.dest("dist"));
   cb();
 });
-
 
 /**
  * Build Task
@@ -183,7 +187,12 @@ gulp.task(
     );
     gulp.watch(
       "./src/modules/**/*.view.html",
-      gulp.series(["clean-build-template-cache", "jshint", "build-template-cache", "code-cache-bust"])
+      gulp.series([
+        "clean-build-template-cache",
+        "jshint",
+        "build-template-cache",
+        "code-cache-bust"
+      ])
     );
     gulp.watch(
       "./src/assets/scss/*",
@@ -192,7 +201,6 @@ gulp.task(
     cb();
   })
 );
-
 
 /**
  * Launches a Webserver
@@ -207,7 +215,6 @@ gulp.task("webserver", function() {
     })
   );
 });
-
 
 /**
  * Start the Dev Server
