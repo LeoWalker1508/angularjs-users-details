@@ -9,21 +9,24 @@ function Directive() {
 }
 
 // Controller
-Controller.$inject = ["$scope", "$routeParams", "$location", "UsersData", "UsersAPI"];
-function Controller($scope, $routeParams, $location, UsersData, UsersAPI) {
+Controller.$inject = ["$scope", "$routeParams", "$location", "UsersData"];
+function Controller($scope, $routeParams, $location, UsersData) {
   $scope.user = {};
   $scope.saveUser = saveUser;
   $scope.checkEdits = checkEdits;
   $scope.cancelEdits = cancelEdits;
 
   this.$onInit = function() {
-    UsersAPI.getUserById($routeParams.id).then(function(response) {
-      $scope.user = response.data;
+    UsersData.getUserById($routeParams.id).then(function(response) {
+      $scope.user = Object.assign({}, response.data);
     });
   };
 
   // Save User
-  function saveUser() {}
+  function saveUser() {
+    UsersData.saveUser($scope.user);
+    $location.url("/users");
+  }
 
   // Cancel Edits
   function checkEdits() {
@@ -35,7 +38,7 @@ function Controller($scope, $routeParams, $location, UsersData, UsersAPI) {
   // Cancel Edits
   function cancelEdits() {
     jQuery("#cancelUserEdit").modal("hide");
-    $location.url('/users');
+    $location.url("/users");
   }
 }
 

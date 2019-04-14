@@ -9,8 +9,8 @@ function Directive() {
 }
 
 // Controller
-Controller.$inject = ["$scope", "UsersAPI", "UsersData"];
-function Controller($scope, UsersAPI, UsersData) {
+Controller.$inject = ["$scope", "UsersData"];
+function Controller($scope, UsersData) {
   $scope.users = [];
   $scope.currentPage = 0;
   $scope.getUsersPage = getUsersPage;
@@ -27,11 +27,8 @@ function Controller($scope, UsersAPI, UsersData) {
 
   // Get the Users from the API
   function getUsers() {
-    UsersAPI.getUsers().then(response => {
-      UsersData.users = response.data;
-    });
+    UsersData.getUsers();
   }
-
   // Get the records for the current page
   function getUsersPage() {
     return UsersData.users.slice($scope.currentPage * RowPerPage, $scope.currentPage * RowPerPage + RowPerPage);
