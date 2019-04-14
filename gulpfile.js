@@ -15,6 +15,7 @@
 var gulp = require("gulp");
 var webserver = require("gulp-webserver");
 var del = require("del");
+var rimraf = require("rimraf");
 var sass = require("gulp-sass");
 var jshint = require("gulp-jshint");
 var babel = require("gulp-babel");
@@ -47,7 +48,8 @@ gulp.task("jshint", function(cb) {
  */
 
 gulp.task("clean", function(cb) {
-  del(["dist"]).then(() => cb());
+  rimraf.sync("dist");
+  cb();
 });
 
 /**
@@ -161,6 +163,19 @@ gulp.task("code-cache-bust", function(cb) {
   cb();
 });
 
+
+/**
+ * Assets
+ */
+
+gulp.task("assets", function (cb) {
+  gulp
+      .src(["./src/assets/**/*", "!src/assets/scss/**/*"])
+      .pipe(gulp.dest("dist/assets"))
+  cb();
+});
+
+
 /**
  * Build Task
  */
@@ -171,6 +186,7 @@ gulp.task(
     "clean",
     gulp.parallel(
       "build-css",
+      "assets",
       gulp.series("jshint", gulp.parallel("build-template-cache", "build-js"))
     ),
     "code-cache-bust"
@@ -184,10 +200,12 @@ gulp.task(
 gulp.task(
   "watch",
   gulp.series("build", function(cb) {
+
     gulp.watch(
       "./src/modules/**/*.js",
       gulp.series(["clean-build-js", "jshint", "build-js", "code-cache-bust"])
     );
+
     gulp.watch(
       "./src/modules/**/*.view.html",
       gulp.series([
@@ -197,10 +215,17 @@ gulp.task(
         "code-cache-bust"
       ])
     );
+
     gulp.watch(
       "./src/assets/scss/**/*.scss",
       gulp.series(["clean-build-css", "build-css", "code-cache-bust"])
     );
+
+    gulp.watch(
+      ["./assets/**/*", "!assets/scss/**/*"],
+      gulp.series(["assets"])
+    );
+
     cb();
   })
 );
