@@ -13,7 +13,7 @@
       // Format Data
       let titles = Object.keys(data[0]).join(",") + "\r\n";
 
-      let content = data.map(row => Object.values(row).join(",")).join("\r\n");
+      let content = data.map(row => Object.values(row).join(";")).join("\r\n");
 
       let csv = titles + content;
 
