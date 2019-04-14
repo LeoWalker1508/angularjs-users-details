@@ -1,11 +1,24 @@
-# Newsletter2go fe-test
-Estimated time: ~4h  
-As a follow-up to our talk, here the test that we've prepared. There's no rush (from our side), so take your time finishing it and try to stay as close as possible to the specification below.
+# AngularJS Users Details App
+
+This is an AngularJS Project implements a scalable hierarchy to easily scale the application as extra features required. It always contains a Gulp file with many features to easily build AngularJS application.
+
+## [ Live Demo](https://users-detials.netlify.com " Live Demo")
+
+## Installation
+
+Run `npm install` to install required npm dependancies.
+
+## Development server
+
+Run `gulp watch` for a dev server. Navigate to `http://localhost:8000/index.html`. The app will automatically reload if you change any of the source files.
+
+## Build
+
+Run `gulp build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Specification
 
-> Imagine this is an MVP and additional features are already planned for the future. Try structuring the application in a way, that you can easily extend it when the time comes and reuse as much of the code you have already written for this MVP.  
-To solve the task you can use npm, gulp, bower, angular, ui-router, bootstrap. Good luck ;)
+> Imagine this is an MVP and additional features are already planned for the future. Try structuring the application in a way, that you can easily extend it when the time comes and reuse as much of the code you have already written for this MVP.
 
   - Create an app that displays all users (#/users) from  /data/users.json file, and a user details page (#/users/{id}).
   - The file should be fetched through ajax, and the data needs to be displayed inside a <table />. 
