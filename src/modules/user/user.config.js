@@ -1,5 +1,7 @@
 //Routing
-module.exports.Config = function($routeProvider) {
+module.exports.Config = [
+  "$routeProvider",
+  function($routeProvider) {
     $routeProvider
       // route for the Dashboard
       .when("/users", {
@@ -14,5 +16,5 @@ module.exports.Config = function($routeProvider) {
           title: "User Details"
         }
       });
-  };
-  
+  }
+];
