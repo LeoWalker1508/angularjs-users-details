@@ -17,6 +17,9 @@ function Controller($scope, UsersData) {
   $scope.previousPage = previousPage;
   $scope.nextPage = nextPage;
   $scope.isLastPage = isLastPage;
+  $scope.isUserSelected = isUserSelected;
+  $scope.deleteSelected = deleteSelected;
+  $scope.downloadSelected = downloadSelected;
 
   const RowPerPage = 10;
 
@@ -29,6 +32,7 @@ function Controller($scope, UsersData) {
   function getUsers() {
     UsersData.getUsers();
   }
+
   // Get the records for the current page
   function getUsersPage() {
     return UsersData.users.slice($scope.currentPage * RowPerPage, $scope.currentPage * RowPerPage + RowPerPage);
@@ -46,10 +50,32 @@ function Controller($scope, UsersData) {
     $scope.currentPage = isLastPage() ? $scope.currentPage : $scope.currentPage + 1;
   }
 
+  // Chech if this is the last page
   function isLastPage() {
     let lastPageNumber = Math.ceil(UsersData.users.length / RowPerPage);
     return $scope.currentPage === lastPageNumber - 1;
   }
+
+  // Check if any user are selected
+  function isUserSelected() {
+    return !!UsersData.users.find(user => user.selected);
+  }
+
+  // Get Selected Users
+  function getSelectedUsers() {
+    return UsersData.users.filter(user => user.selected);
+  }
+
+  //Delete Selected Rows
+  function deleteSelected() {
+    UsersData.patchDelete(getSelectedUsers());
+  }
+
+  // Download Selected Rows
+  function downloadSelected() {
+    
+  }
+  
 }
 
 // Exports

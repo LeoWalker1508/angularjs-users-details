@@ -52,5 +52,11 @@
     this.deleteUser = function(user_id) {
       this.users = this.users.filter(user => user.id !== user_id);
     };
+
+    // Delete Multiple users once
+    this.patchDelete = function(users) {
+      let user_ids = users.map(user => user.id);
+      this.users = this.users.filter(user => !user_ids.includes(user.id));
+    }
   }
 })();
