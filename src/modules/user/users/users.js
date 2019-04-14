@@ -17,6 +17,7 @@ function Controller($scope, UsersData, Json2Csv) {
   $scope.previousPage = previousPage;
   $scope.nextPage = nextPage;
   $scope.isLastPage = isLastPage;
+  $scope.getSelectedUsers = getSelectedUsers;
   $scope.isUserSelected = isUserSelected;
   $scope.deleteSelected = deleteSelected;
   $scope.downloadSelected = downloadSelected;

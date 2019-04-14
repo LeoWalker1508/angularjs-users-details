@@ -3,6 +3,9 @@
     <h2>Users</h2>
   </div>
   <div class="col-md-4 text-right">
+    <span class="font-weight-bold" ng-if="getSelectedUsers().length">
+      {{ getSelectedUsers().length }} selected
+    </span>
     <button type="button" class="btn btn-danger" ng-click="deleteSelected()" ng-disabled="!isUserSelected()">
       Delete
     </button>
