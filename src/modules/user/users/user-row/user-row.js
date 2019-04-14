@@ -14,11 +14,17 @@ function Directive() {
 Controller.$inject = ["$scope", "UsersData"];
 function Controller($scope, UsersData) {
   $scope.showUser = showUser;
+  $scope.deleteUser = deleteUser;
 
   // Show User Data
   function showUser() {
     UsersData.shownUser = $scope.user;
-    jQuery('#userDetailsModal').modal('show');
+    jQuery("#userDetailsModal").modal("show");
+  }
+
+  // Delete User
+  function deleteUser() {
+    UsersData.deleteUser($scope.user.id);
   }
 }
 

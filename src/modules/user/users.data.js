@@ -12,6 +12,11 @@
 
       // Show User
       this.shownUser = {};
+
+      // Delete User
+      this.deleteUser = function(user_id) {
+        this.users = this.users.filter(user => user.id !== user_id);
+      }
       
     }
   })();
