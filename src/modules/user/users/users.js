@@ -35,6 +35,7 @@ function Controller($scope, UsersAPI) {
 
   // Get the records for the current page
   function getUsersPage() {
+    console.log($scope.users)
     return $scope.users.slice($scope.currentPage * RowPerPage, $scope.currentPage * RowPerPage + RowPerPage);
   }
 
