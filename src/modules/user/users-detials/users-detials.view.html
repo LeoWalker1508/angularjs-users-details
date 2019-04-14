@@ -1,1 +1,66 @@
-Users Details Box
+<a href="#!/users">< Back to Users</a>
+<h2>Edit {{ user.firstName }} Details</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <form name="editUser">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          ng-model="user.firstName"
+          name="firstName"
+          placeholder="Enter first name"
+          required
+        />
+        <small
+        ng-show="editUser.firstName.$dirty && !user.firstName.$valid"
+        id="emailHelp"
+        class="form-text text-danger"
+        >Please enter a value for first name.</small
+      >
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          ng-model="user.lastName"
+          name="lastName"
+          placeholder="Enter last name"
+          required
+        />
+        <small
+          ng-show="editUser.lastName.$dirty && !user.lastName.$valid"
+          id="emailHelp"
+          class="form-text text-danger"
+          >Please enter a value for last name.</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          ng-model="user.email"
+          name="email"
+          placeholder="Enter email"
+          required
+          ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
+        />
+        <small
+          ng-show="editUser.email.$dirty && !editUser.email.$valid"
+          id="emailHelp"
+          class="form-text text-danger"
+          >Please enter a valid email address.</small
+        >
+      </div>
+      <button type="button" class="btn btn-primary" ng-disabled="!editUser.$valid">Save</button>
+      <button type="button" class="btn btn-danger">Cancel</button>
+    </form>
+  </div>
+</div>

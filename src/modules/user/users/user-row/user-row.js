@@ -11,15 +11,21 @@ function Directive() {
 }
 
 // Controller
-Controller.$inject = ["$scope", "UsersData"];
-function Controller($scope, UsersData) {
+Controller.$inject = ["$scope", "$location", "UsersData"];
+function Controller($scope, $location, UsersData) {
   $scope.showUser = showUser;
+  $scope.editUser = editUser;
   $scope.deleteUser = deleteUser;
 
   // Show User Data
   function showUser() {
     UsersData.shownUser = $scope.user;
     jQuery("#userDetailsModal").modal("show");
+  }
+
+  // Edit User
+  function editUser() {
+    $location.url("/users/" + $scope.user.id);
   }
 
   // Delete User
