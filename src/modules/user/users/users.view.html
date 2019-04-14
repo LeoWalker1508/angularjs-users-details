@@ -24,7 +24,7 @@
     <li class="page-item disabled">
       <span class="page-link">{{ currentPage + 1 }}</span>
     </li>
-    <li class="page-item" ng-class="currentPage === lastPageNumber - 1 ? 'disabled' : ''">
+    <li class="page-item" ng-class="isLastPage() ? 'disabled' : ''">
       <button class="page-link" ng-click="nextPage()">Next</button>
     </li>
   </ul>

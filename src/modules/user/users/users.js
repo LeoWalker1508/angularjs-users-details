@@ -13,10 +13,10 @@ Controller.$inject = ["$scope", "UsersAPI", "UsersData"];
 function Controller($scope, UsersAPI, UsersData) {
   $scope.users = [];
   $scope.currentPage = 0;
-  $scope.lastPageNumber = 0;
   $scope.getUsersPage = getUsersPage;
   $scope.previousPage = previousPage;
   $scope.nextPage = nextPage;
+  $scope.isLastPage = isLastPage;
 
   const RowPerPage = 10;
 
@@ -29,7 +29,6 @@ function Controller($scope, UsersAPI, UsersData) {
   function getUsers() {
     UsersAPI.getUsers().then(response => {
       UsersData.users = response.data;
-      $scope.lastPageNumber = Math.ceil($scope.users.length / RowPerPage);
     });
   }
 
@@ -40,12 +39,19 @@ function Controller($scope, UsersAPI, UsersData) {
 
   // Previous Page
   function previousPage() {
+    let lastPageNumber = Math.ceil(UsersData.users.length / RowPerPage);
     $scope.currentPage = $scope.currentPage === 0 ? $scope.currentPage : $scope.currentPage - 1;
   }
 
   // Next Page
   function nextPage() {
-    $scope.currentPage = $scope.currentPage === $scope.lastPageNumber - 1 ? $scope.currentPage : $scope.currentPage + 1;
+    let lastPageNumber = Math.ceil(UsersData.users.length / RowPerPage);
+    $scope.currentPage = isLastPage() ? $scope.currentPage : $scope.currentPage + 1;
+  }
+
+  function isLastPage() {
+    let lastPageNumber = Math.ceil(UsersData.users.length / RowPerPage);
+    return $scope.currentPage === lastPageNumber - 1;
   }
 }
 
