@@ -8,6 +8,7 @@ require("./users.api");
   // Components and Angular Imports
   const UserConfig = require("./user.config");
   const UsersComponent = require("./users/users");
+  const UserRowComponent = require('./users/user-row/user-row');
   const UserDetailsComponent = require("./users-detials/users-detials");
 
   // Admin Config
@@ -15,5 +16,7 @@ require("./users.api");
 
   // Directives
   angular.module("UsersApp.UsersModule").directive("users", UsersComponent.Directive);
+  angular.module("UsersApp.UsersModule").directive("userRow", UserRowComponent.Directive);
   angular.module("UsersApp.UsersModule").directive("userDetials", UserDetailsComponent.Directive);
+  
 })();

@@ -4,29 +4,29 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Country</th>
+      <th scope="col" class="text-center">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <tr user-row ng-repeat="user in getUsersPage()" user="user"></tr>
   </tbody>
 </table>
+
+
+<nav aria-label="Page navigation users">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <button class="page-link" ng-click="previousPage()">Previous</button>
+    </li>
+    <li class="page-item disabled">
+      <span class="page-link">{{ currentPage + 1 }}</span>
+    </li>
+    <li class="page-item">
+      <button class="page-link" ng-click="nextPage()">Next</button>
+    </li>
+  </ul>
+</nav>
