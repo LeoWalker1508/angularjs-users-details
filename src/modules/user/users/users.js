@@ -9,8 +9,8 @@ function Directive() {
 }
 
 // Controller
-Controller.$inject = ["$scope", "UsersAPI"];
-function Controller($scope, UsersAPI) {
+Controller.$inject = ["$scope", "UsersAPI", "UsersData"];
+function Controller($scope, UsersAPI, UsersData) {
   $scope.users = [];
   $scope.currentPage = 0;
   $scope.lastPageNumber = 0;
@@ -28,15 +28,14 @@ function Controller($scope, UsersAPI) {
   // Get the Users from the API
   function getUsers() {
     UsersAPI.getUsers().then(response => {
-      $scope.users = response.data;
+      UsersData.users = response.data;
       $scope.lastPageNumber = Math.ceil($scope.users.length / RowPerPage);
     });
   }
 
   // Get the records for the current page
   function getUsersPage() {
-    console.log($scope.users)
-    return $scope.users.slice($scope.currentPage * RowPerPage, $scope.currentPage * RowPerPage + RowPerPage);
+    return UsersData.users.slice($scope.currentPage * RowPerPage, $scope.currentPage * RowPerPage + RowPerPage);
   }
 
   // Previous Page

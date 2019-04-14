@@ -9,6 +9,9 @@
     function UsersData() {
       // Users Data
       this.users = [];
+
+      // Show User
+      this.shownUser = {};
       
     }
   })();
