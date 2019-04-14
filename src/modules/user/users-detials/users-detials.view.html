@@ -16,11 +16,10 @@
           required
         />
         <small
-        ng-show="editUser.firstName.$dirty && !user.firstName.$valid"
-        id="emailHelp"
-        class="form-text text-danger"
-        >Please enter a value for first name.</small
-      >
+          ng-show="editUser.firstName.$dirty && !editUser.firstName.$valid"
+          class="form-text text-danger"
+          >Please enter a value for first name.</small
+        >
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
@@ -33,10 +32,7 @@
           placeholder="Enter last name"
           required
         />
-        <small
-          ng-show="editUser.lastName.$dirty && !user.lastName.$valid"
-          id="emailHelp"
-          class="form-text text-danger"
+        <small ng-show="editUser.lastName.$dirty && !editUser.lastName.$valid" class="form-text text-danger"
           >Please enter a value for last name.</small
         >
       </div>
@@ -52,15 +48,39 @@
           required
           ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
         />
-        <small
-          ng-show="editUser.email.$dirty && !editUser.email.$valid"
-          id="emailHelp"
-          class="form-text text-danger"
+        <small ng-show="editUser.email.$dirty && !editUser.email.$valid" class="form-text text-danger"
           >Please enter a valid email address.</small
         >
       </div>
-      <button type="button" class="btn btn-primary" ng-disabled="!editUser.$valid">Save</button>
-      <button type="button" class="btn btn-danger">Cancel</button>
+      <button type="button" class="btn btn-primary" ng-disabled="!editUser.$valid" ng-click="saveUser()">Save</button>
+      <button type="button" class="btn btn-danger" ng-click="checkEdits()">Cancel</button>
     </form>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="cancelUserEdit"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="cancelUserEditTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelUserEditTitle">Cancel Edits</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure to cancel the edits for the user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="cancelEdits()">Yes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+      </div>
+    </div>
   </div>
 </div>
