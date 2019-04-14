@@ -9,8 +9,8 @@ function Directive() {
 }
 
 // Controller
-Controller.$inject = ["$scope", "UsersData"];
-function Controller($scope, UsersData) {
+Controller.$inject = ["$scope", "UsersData", "Json2CSV"];
+function Controller($scope, UsersData, Json2CSV) {
   $scope.users = [];
   $scope.currentPage = 0;
   $scope.getUsersPage = getUsersPage;
@@ -73,9 +73,17 @@ function Controller($scope, UsersData) {
 
   // Download Selected Rows
   function downloadSelected() {
-    
+    // Clean Data
+    let cleanData = JSON.parse(JSON.stringify(getSelectedUsers()));
+    cleanData = cleanData.map(data => {
+      delete data.$$hashKey;
+      delete data.selected;
+      return data;
+    });
+
+    // Download CSV file
+    Json2CSV.download(cleanData);
   }
-  
 }
 
 // Exports
