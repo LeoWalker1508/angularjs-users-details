@@ -9,8 +9,8 @@ function Directive() {
 }
 
 // Controller
-Controller.$inject = ["$scope", "UsersData", "Json2CSV"];
-function Controller($scope, UsersData, Json2CSV) {
+Controller.$inject = ["$scope", "UsersData", "Json2Csv"];
+function Controller($scope, UsersData, Json2Csv) {
   $scope.users = [];
   $scope.currentPage = 0;
   $scope.getUsersPage = getUsersPage;
@@ -82,7 +82,7 @@ function Controller($scope, UsersData, Json2CSV) {
     });
 
     // Download CSV file
-    Json2CSV.download(cleanData);
+    Json2Csv.download(cleanData);
   }
 }
 

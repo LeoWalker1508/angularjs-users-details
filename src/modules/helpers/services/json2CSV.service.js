@@ -1,12 +1,12 @@
 (function() {
   "use strict";
 
-  angular.module("UsersApp.Helpers.Json2CSV", []);
+  angular.module("UsersApp.Helpers.Json2Csv", []);
 
-  angular.module("UsersApp.Helpers.Json2CSV").service("Json2CSV", Json2CSV);
+  angular.module("UsersApp.Helpers.Json2Csv").service("Json2Csv", Json2Csv);
 
-  function Json2CSV() {
-    // Download JSON data as CSV
+  function Json2Csv() {
+    // Json2Csv JSON data as CSV
     this.download = function(data) {
       console.log(data);
     };

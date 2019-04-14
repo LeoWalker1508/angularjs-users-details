@@ -1,8 +1,8 @@
-require("./services/json2CSV.service");
+require("./services/Json2Csv.service");
 
 (function() {
   "use strict";
 
-  angular.module("UsersApp.Helpers", ["UsersApp.Helpers.Json2CSV"]);
+  angular.module("UsersApp.Helpers", ["UsersApp.Helpers.Json2Csv"]);
 
 })();
