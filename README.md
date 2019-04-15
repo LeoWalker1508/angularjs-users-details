@@ -10,7 +10,7 @@ Run `npm install` to install required npm dependancies.
 
 ## Development server
 
-Run `gulp watch` for a dev server. Navigate to `http://localhost:8000/index.html`. The app will automatically reload if you change any of the source files.
+Run `gulp dev` for a dev server. Navigate to `http://localhost:8000/index.html`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
